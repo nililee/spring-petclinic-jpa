@@ -15,23 +15,15 @@
  */
 package org.springframework.samples.petclinic.owner;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotEmpty;
-
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.util.Assert;
+
+import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Simple JavaBean domain object representing an owner.
@@ -100,6 +92,7 @@ public class Owner extends Person {
 
 	/**
 	 * Return the Pet with the given name, or null if none found for this Owner.
+	 *
 	 * @param name to test
 	 * @return a pet if pet name is already in use
 	 */
@@ -109,6 +102,7 @@ public class Owner extends Person {
 
 	/**
 	 * Return the Pet with the given id, or null if none found for this Owner.
+	 *
 	 * @param name to test
 	 * @return a pet if pet id is already in use
 	 */
@@ -126,6 +120,7 @@ public class Owner extends Person {
 
 	/**
 	 * Return the Pet with the given name, or null if none found for this Owner.
+	 *
 	 * @param name to test
 	 * @return a pet if pet name is already in use
 	 */
@@ -146,13 +141,14 @@ public class Owner extends Person {
 	@Override
 	public String toString() {
 		return new ToStringCreator(this).append("id", this.getId()).append("new", this.isNew())
-				.append("lastName", this.getLastName()).append("firstName", this.getFirstName())
-				.append("address", this.address).append("city", this.city).append("telephone", this.telephone)
-				.toString();
+			.append("lastName", this.getLastName()).append("firstName", this.getFirstName())
+			.append("address", this.address).append("city", this.city).append("telephone", this.telephone)
+			.toString();
 	}
 
 	/**
 	 * Adds the given {@link Visit} to the {@link Pet} with the given identifier.
+	 *
 	 * @param petId the identifier of the {@link Pet}, must not be {@literal null}.
 	 * @param visit the visit to add, must not be {@literal null}.
 	 */

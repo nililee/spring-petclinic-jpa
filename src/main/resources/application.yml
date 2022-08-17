@@ -1,0 +1,28 @@
+spring:
+  jpa:
+    open-in-view: 'true'
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      schema-locations: classpath*:db/${database}/schema.sql
+      data-locations: classpath*:db/${database}/data.sql
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 12h
+  thymeleaf:
+    mode: HTML
+  messages:
+    basename: messages/messages
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+database: h2
+logging:
+  level:
+    org:
+      springframework: INFO

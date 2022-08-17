@@ -1,0 +1,9 @@
+database: mysql
+spring:
+  datasource:
+    username: ${MYSQL_USER:petclinic}
+    url: ${MYSQL_URL:jdbc:mysql://localhost/petclinic}
+    password: ${MYSQL_PASS:petclinic}
+  sql:
+    init:
+      mode: always

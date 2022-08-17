@@ -53,7 +53,9 @@ class VetControllerTests {
 		james.setLastName("Carter");
 		james.setId(1);
 		return james;
-	};
+	}
+
+	;
 
 	private Vet helen() {
 		Vet helen = new Vet();
@@ -65,13 +67,15 @@ class VetControllerTests {
 		radiology.setName("radiology");
 		helen.addSpecialty(radiology);
 		return helen;
-	};
+	}
+
+	;
 
 	@BeforeEach
 	void setup() {
 		given(this.vets.findAll()).willReturn(Lists.newArrayList(james(), helen()));
 		given(this.vets.findAll(any(Pageable.class)))
-				.willReturn(new PageImpl<Vet>(Lists.newArrayList(james(), helen())));
+			.willReturn(new PageImpl<Vet>(Lists.newArrayList(james(), helen())));
 
 	}
 
@@ -79,16 +83,16 @@ class VetControllerTests {
 	void testShowVetListHtml() throws Exception {
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/vets.html?page=1")).andExpect(status().isOk())
-				.andExpect(model().attributeExists("listVets")).andExpect(view().name("vets/vetList"));
+			.andExpect(model().attributeExists("listVets")).andExpect(view().name("vets/vetList"));
 
 	}
 
 	@Test
 	void testShowResourcesVetList() throws Exception {
 		ResultActions actions = mockMvc.perform(get("/vets").accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
+			.andExpect(status().isOk());
 		actions.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.vetList[0].id").value(1));
+			.andExpect(jsonPath("$.vetList[0].id").value(1));
 	}
 
 }
